@@ -1,11 +1,40 @@
 {
   "name": "playwright_tests",
   "version": "1.0.0",
+  "description": "Playwright E2E and Performance Testing Suite",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.18"
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint --fix .",
+    "test": "playwright test",
+    "test:e2e": "playwright test tests/e2e",
+    "test:load": "playwright test tests/load",
+    "test:parallel": "playwright test --workers=4",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
   },
-  "scripts": {}
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@faker-js/faker": "^9.6.0",
+    "@playwright/test": "^1.51.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/k6": "^1.0.2",
+    "@types/node": "^22.14.0",
+    "allure-playwright": "^3.2.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
+    "playwright-performance": "^2.0.4",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.0"
+  },
+  "dependencies": {
+    "k6": "^0.0.0",
+    "zod": "^3.24.2"
+  }
 }
