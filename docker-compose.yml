@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - playwright-results:/app/test-results
+      - allure-results:/app/allure-results
+    environment:
+      - CI=true
+      - BASE_URL=${BASE_URL:-http://localhost:3000}
+      - MAX_WORKERS=${MAX_WORKERS:-4}
+    command: pnpm test
+
+  k6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - k6-results:/app/k6-results
+    environment:
+      - K6_OUT=json=/app/k6-results/results.json
+    command: k6 run /app/tests/load/k6-tests/*.js
+
+volumes:
+  playwright-results:
+  allure-results:
+  k6-results:
